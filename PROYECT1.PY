@@ -30,20 +30,21 @@ elif choice == "stay":
     if room_choice == "1":
         print("You approach the closet,you find a hammer")
         turns += 1
-     elif room_choice == "2":
+    elif room_choice == "2":
         print("You move towards the window,you tried to open it and failed")
         turns += 2
     elif room_choice == "3":
-        print("You reach for your bag,what do you want to do?"
-        choice_room_1=("open (now/later").lower()
+        print("You reach for your bag,what do you want to do?")
+        choice_room_1=input("open (now/later)").lower()
         if choice_room_1 == "now":
-            print("You decided to leave the room. Turns:", turns)
-             turns += 1
-            
+            turns += 1
+            print("You decided to open the bag and found a navaja . Turns:", turns)
+            print("you leave the room")
         elif choice_room_1 == "later":
             turns += 2
-    print("You decided to stay in the room. Turns:", turns)
+            print("You decided to leave the room withouth looking the bag. Turns:", turns)
     else:
         print("Invalid choice!")
 else:
     print("Invalid choice! Please choose 'leave' or 'stay'")
+leave_room=input("What would you like to do?\n1. Open the bathdroom door\n2. Go to the livingroom\n3. Get your bag\nEnter your choice (1/2/3): ")
