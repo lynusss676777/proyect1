@@ -50,8 +50,13 @@ elif choice == "stay":
 else:
     print("Invalid choice! Please choose 'leave' or 'stay'")
 leave_room=input("What would you like to do?\n1.Go to the middle of your house\n2. Go to the front of your house\nEnter your choice (1/2):")
+if leave_room== "1":
+    print("You go to the middle of the house")
+    turns += 1
+    print("at your right there is a bathroom, at your left there is a door towards the living room")
+    choice_sect_1=input("where do you want to go?(right/left)").lower()
      
-if leave_room== "right":
+    if leave_room== "right":
      print("You get into the bathroom")
      bathroom_choice = input("What would you like to do?\n1. Get a towel\n2. Open the closet\n3. Get mother's tweezers\n4. Look in the mirror\nEnter your choice (1/2/3/4): ")
         
@@ -78,6 +83,18 @@ if leave_room== "right":
 elif leave_room == "left":
         print("You enter the living room")
         living_choice = input("What would you like to do?\n1. Check the TV\n2. Look under the sofa\n3. Go to the kitchen\nEnter your choice (1/2/3): ")
+ print("The TV is not working due to the fire")
+            turns += 1
+        elif living_choice == "2":
+            print("You find some keys under the sofa")
+            turns += 1
+        elif living_choice == "3":
+            print("You move towards the kitchen")
+            turns += 1
+        else:
+            print("Invalid choice!")
+    else:
+        print("Invalid choice! Please choose 'right' or 'left'") 
 
 
 
