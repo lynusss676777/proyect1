@@ -3,6 +3,7 @@
 #  when you wake up you realize something in your room started a fire, find the way to scape 
 
 import random
+navaja=1
 turns=0
 room2=True
 stage=1
@@ -39,10 +40,12 @@ elif choice == "stay":
         print("You reach for your bag,what do you want to do?")
         choice_room_1=input("open (now/later)").lower()
         if choice_room_1 == "now":
+            navaja=True
             turns += 1
             print("You decided to open the bag and found a navaja . Turns:", turns)
             print(leave)
         elif choice_room_1 == "later":
+            navaja= False
             turns += 2
             print("You decided to leave the room withouth looking the bag. Turns:", turns)
     else:
@@ -56,7 +59,7 @@ if leave_room== "1":
     print("at your right there is a bathroom, at your left there is a door towards the living room")
     choice_sect_1=input("where do you want to go?(right/left)").lower()
      
-    if leave_room== "right":
+    if choice_sect_1 == "right":
      print("You get into the bathroom")
      bathroom_choice = input("What would you like to do?\n1. Get a towel\n2. Open the closet\n3. Get mother's tweezers\n4. Look in the mirror\nEnter your choice (1/2/3/4): ")
         
@@ -64,7 +67,7 @@ if leave_room== "1":
             print("You grab a towel")
             turns += 1
      elif bathroom_choice=="2":
-         if "navaja" in player_name:  
+         if navaja==True:  
                 print("You use the navaja to unlock the closet")
                 print("You find some medicine inside")
                 turns += 1
@@ -80,11 +83,12 @@ if leave_room== "1":
      else:
             print("Invalid choice!")
     
-elif leave_room == "left":
+    elif choice_sect_1 == "left":
         print("You enter the living room")
         living_choice = input("What would you like to do?\n1. Check the TV\n2. Look under the sofa\n3. Go to the kitchen\nEnter your choice (1/2/3): ")
- print("The TV is not working due to the fire")
-            turns += 1
+        if living_choice == "1":
+            print("The TV is not working due to the fire")
+            turns += random ;{0,5}
         elif living_choice == "2":
             print("You find some keys under the sofa")
             turns += 1
@@ -93,8 +97,8 @@ elif leave_room == "left":
             turns += 1
         else:
             print("Invalid choice!")
-    else:
-        print("Invalid choice! Please choose 'right' or 'left'") 
+else:
+    print("Invalid choice! Please choose 'right' or 'left'") 
 
 
 
@@ -104,9 +108,3 @@ elif leave_room == "left":
 
 
         
-elif room_choice == "2":
-        print("You move towards the front of the house")
-        turns += 4
-
- else:
-        print("Invalid choice!")
