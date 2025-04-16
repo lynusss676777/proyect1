@@ -14,7 +14,7 @@ items = {
     'towel': False,
     'fire_extinguisher': False
 }
-turns = 0
+turns = 0 
 
 def print_inventory():
     print("\nYour items:")
@@ -74,23 +74,28 @@ while game_active:
             
             if direction == "right":
                 print("\nYou enter the bathroom.")
+                turns += 1
                 bathroom_choice = input("1. Get towel\n2. Open closet\n3. Get tweezers\n4. Look in mirror\nChoice (1/2/3/4): ")
                 
                 if bathroom_choice == "1":
                     print("You grab a towel - could be useful against smoke!")
                     items['towel'] = True
+                    turns += 1
                 elif bathroom_choice == "2":
                     if items['navaja']:
                         print("You unlock the closet with your navaja and find some keys!")
+                        turns += 1
                         items['keys'] = True
                     else:
-                        print("The closet is locked. Need something to pick it.")
+                        print("The closet is locked. Need something to open it.")
+                        turns += 1
                 elif bathroom_choice == "3":
                     print("You grab the tweezers.")
                     items['tweezers'] = True
+                    turns += 1
                 elif bathroom_choice == "4":
                     print("Just your scared reflection...")
-                
+                    turns += 1
             elif direction == "left":
                 print("\nYou enter the living room.")
                 living_choice = input("1. Check TV\n2. Look under sofa\n3. Go to front\nChoice (1/2/3): ")
@@ -100,15 +105,19 @@ while game_active:
                         print("You use the batteries to power the TV and see the emergency exit route!")
                     else:
                         print("TV has no power.")
+                        turns += 1
                 elif living_choice == "2":
                     if not items['keys']:
                         print("You find some keys under the sofa!")
                         items['keys'] = True
+                        turns += 1
                 elif living_choice == "3":
                     print("Moving to the front of the house...")
+                    turns += 1
         
         elif location == "2":
             print("\nYou're at the front of the house.")
+            turns += 1
             front_choice = input("Go to:\n1. Kitchen\n2. Garage\nChoice (1/2): ")
             
             if front_choice == "1":
@@ -117,9 +126,11 @@ while game_active:
                 
                 if kitchen_choice == "1":
                     print("Nothing useful in the fridge.")
+                    turns += 1
                 elif kitchen_choice == "2":
                     if not items['batteries']:
                         print("You find some batteries!")
+                        turns += 1
                         items['batteries'] = True
                 elif kitchen_choice == "3":
                     if items['hammer']:
@@ -128,10 +139,12 @@ while game_active:
                         continue
                     else:
                         print("The stove looks breakable with the right tool...")
+                        turns += 1
             
             elif front_choice == "2":
                 print("\nIn the garage.")
-                garage_choice = input("1. Check car\n2. Tool bench\n3. Garage door\nChoice (1/2/3): ")
+                turns += 1
+                garage_choice = input("1. Check car\n3. Garage door\nChoice (1/2/3): ")
                 
                 if garage_choice == "1":
                     if items['keys']:
@@ -140,10 +153,8 @@ while game_active:
                         continue
                     else:
                         print("Car needs keys.")
-                elif garage_choice == "2":
-                    if not items['fire_extinguisher']:
-                        print("You find a fire extinguisher!")
-                        items['fire_extinguisher'] = True
+                        turns += 1
+                
                 elif garage_choice == "3":
                     if items['batteries']:
                         print("You power up the garage door with batteries and escape!")
