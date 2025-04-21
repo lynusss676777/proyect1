@@ -5,7 +5,7 @@
 import random
 n=random.randrange(1, 3)
 game_active = True
-
+gomo=True
 items = {
     'navaja': False,
     'hammer': False,
@@ -33,44 +33,50 @@ print(f"{player_name}, I hope you can escape!")
 
 print("\nYou wake up in your room, smells weird then you realize it's on fire  you forgot to close your cigarette!")
 
-
-choice = input("\nWhat do you want to do? (leave/stay): ").lower()
+while gomo:
+    choice = input("\nWhat do you want to do? (leave/stay): ").lower()
     
-if choice == "leave":
-        turns += n
-        print("You decided to leave the room.")
-elif choice == "stay":
-        turns += 1
-        print("You decided to stay in the room.")
-        room_choice = input("What would you like to do?\n1. Open the closet\n2. Try to open the window\n3. Get your bag\nEnter choice (1/2/3): ")
-        
-        if room_choice == "1":
-            print("You find a hammer in the closet!")
-            items['hammer'] = True
-            turns += 1
+    if choice == "leave":
+            gomo=False
+            turns += n
             print("You decided to leave the room.")
-        elif room_choice == "2":
-            if items['hammer']:
-                print("You use the hammer to break the window! You escaped!")
-                game_active = False
-               
-            else:
-                print("The window won't budge. Maybe you need something to break it.")
-                turns += n
-                print("You decided to leave the room.")
-        elif room_choice == "3":
-            bag_choice = input("Open bag now or later? (now/later): ").lower()
-            if bag_choice == "now":
-                print("You found a navaja in your bag!")
-                items['navaja'] = True
+    elif choice == "stay":
+            turns += 1
+            print("You decided to stay in the room.")
+            room_choice = input("What would you like to do?\n1. Open the closet\n2. Try to open the window\n3. Get your bag\nEnter choice (1/2/3): ")
+            
+            if room_choice == "1":
+                print("You find a hammer in the closet!")
+                items['hammer'] = True
                 turns += 1
                 print("You decided to leave the room.")
-            else:
-                print("You decide to check the bag later.")
-                turns += n
-else:
-            print("Invalid choice!")
-    
+                gomo=False
+            elif room_choice == "2":
+                if items['hammer']:
+                    print("You use the hammer to break the window! You escaped!")
+                    game_active = False
+                    gomo=False
+                
+                else:
+                    print("The window won't budge. Maybe you need something to break it.")
+                    turns += n
+                    print("You decided to leave the room.")
+                    gomo=False
+            elif room_choice == "3":
+                bag_choice = input("Open bag now or later? (now/later): ").lower()
+                if bag_choice == "now":
+                    print("You found a navaja in your bag!")
+                    items['navaja'] = True
+                    turns += 1
+                    print("You decided to leave the room.")
+                    gomo=False
+                else:
+                    print("You decide to check the bag later.")
+                    turns += n
+                    gomo=False
+    else:
+                print("Invalid choice!")
+        
 while game_active:
         
     
@@ -83,6 +89,9 @@ while game_active:
             if direction == "right":
                 print("\nYou enter the bathroom.")
                 turns += n
+                if turns >= 15:
+                    print("\nThe fire has spread too much. Game Over!")
+                    game_active = False
                 bathroom_choice = input("1. Get towel\n2. Open closet\n3. Get tweezers\n4. Look in mirror\nChoice (1/2/3/4): ")
                 
                 if bathroom_choice == "1":
@@ -140,7 +149,7 @@ while game_active:
         
         elif location == "2":
             print("\nYou're at the front of the house.")
-            turns += 1
+            
             front_choice = input("Go to:\n1. Kitchen\n2. Garage\nChoice (1/2): ")
             
             if front_choice == "1":
@@ -168,7 +177,7 @@ while game_active:
             
             elif front_choice == "2":
                 print("\nIn the garage.")
-                turns += 1
+              
                 garage_choice = input("1. Check car\n3. Garage door\nChoice (1/2/3): ")
                 
                 if garage_choice == "1":
@@ -187,6 +196,7 @@ while game_active:
                         continue
                     else:
                         print("Door needs power.")
+                        turns += 1
                 else:
                     print("Invalid choice!")
             else:
